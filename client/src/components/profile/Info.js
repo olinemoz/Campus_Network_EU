@@ -53,7 +53,16 @@ const Info = ({id, auth, profile, dispatch}) => {
                                     
                                     : <FollowBtn user={user} />
                                 }
-                               
+                                {user._id === auth.user._id ? (
+                                    <button
+                                        className="btn btn-outline-info"
+                                        onClick={() => setChangePassword(true)}
+                                    >
+                                        Change password
+                                    </button>
+                                ) : (
+                                    <FollowBtn user={user} />
+                                )}
                                 
                             </div>
 
