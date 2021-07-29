@@ -9,7 +9,8 @@ export const POST_TYPES = {
     GET_POSTS: 'GET_POSTS',
     UPDATE_POST: 'UPDATE_POST',
     GET_POST: 'GET_POST',
-    DELETE_POST: 'DELETE_POST'
+    DELETE_POST: 'DELETE_POST',
+    REPORT_POST: "REPORT_POST",
 }
 
 
@@ -187,6 +188,36 @@ export const deletePost = ({post, auth, socket}) => async (dispatch) => {
         })
     }
 }
+
+
+export const reportPost = ({ post, auth }) => async (dispatch) => {
+
+    const reportExist = post.reports.find(report => report === auth.user._id);
+
+    if (reportExist && reportExist.length > 0) {
+        return dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: { error: "You have already reported this post." },
+        });
+    }
+    const newPost = { ...post };
+    newPost.reports.push(auth.user._id);
+
+    dispatch({ type: POST_TYPES.REPORT_POST, payload: newPost });
+
+
+    try {
+        const res = await patchDataAPI(`post/${post._id}/report`, null, auth.token);
+        dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } });
+    } catch (err) {
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {
+                error: err.response.data.msg,
+            },
+        });
+    }
+};
 
 export const savePost = ({post, auth}) => async (dispatch) => {
     const newUser = {...auth.user, saved: [...auth.user.saved, post._id]}

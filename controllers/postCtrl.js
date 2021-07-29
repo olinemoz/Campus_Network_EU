@@ -201,6 +201,37 @@ const postCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    reportPost: async (req, res) => {
+        try {
+            const post = await Posts.find({
+                _id: req.params.id,
+                reports: req.user._id,
+            });
+            if (post.length > 0) {
+                return res
+                    .status(400)
+                    .json({ msg: "You have already reported this post" });
+            }
+
+            const report = await Posts.findOneAndUpdate(
+                { _id: req.params.id },
+                {
+                    $push: { reports: req.user._id },
+                },
+                {
+                    new: true,
+                }
+            );
+
+            if (!report) {
+                return res.status(400).json({ msg: "Post does not exist." });
+            }
+
+            res.json({ msg: "Post reported successfully." });
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
+        }
+    },
     savePost: async (req, res) => {
         try {
             const user = await Users.find({_id: req.user._id, saved: req.params.id})
