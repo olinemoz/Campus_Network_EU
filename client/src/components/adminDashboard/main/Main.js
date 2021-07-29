@@ -45,7 +45,7 @@ const Main = () => {
             <i
               className="fa fa-users fa-2x text-lightblue"
               aria-hidden="true"
-            ></i>
+            />
             <div className="card_inner_admin">
               <p className="text-primary-p">Total Users</p>
               <span className="font-bold text-title">{admin.total_users}</span>
@@ -53,7 +53,7 @@ const Main = () => {
           </div>
 
           <div className="card_admin">
-            <i className="fa fa-comments fa-2x text-red" aria-hidden="true"></i>
+            <i className="fa fa-comments fa-2x text-red" aria-hidden="true"/>
             <div className="card_inner_admin">
               <p className="text-primary-p">Total Comments</p>
               <span className="font-bold text-title">
@@ -66,7 +66,7 @@ const Main = () => {
             <i
               className="fa fa-camera fa-2x text-yellow"
               aria-hidden="true"
-            ></i>
+            />
             <div className="card_inner_admin">
               <p className="text-primary-p">Total Posts</p>
               <span className="font-bold text-title">{admin.total_posts}</span>
@@ -74,7 +74,7 @@ const Main = () => {
           </div>
 
           <div className="card_admin">
-            <i className="fa fa-ban fa-2x text-red" aria-hidden="true"></i>
+            <i className="fa fa-ban fa-2x text-red" aria-hidden="true"/>
             <div className="card_inner_admin">
               <p className="text-primary-p">Reported Posts</p>
               <span className="font-bold text-title">
@@ -87,7 +87,7 @@ const Main = () => {
             <i
               className="fa fa-thumbs-up fa-2x text-green"
               aria-hidden="true"
-            ></i>
+            />
             <div className="card_inner_admin">
               <p className="text-primary-p">Total Likes</p>
               <span className="font-bold text-title">{admin.total_likes}</span>
@@ -98,7 +98,7 @@ const Main = () => {
             <i
               className="fa fa-check-circle fa-2x  text-green"
               aria-hidden="true"
-            ></i>
+            />
             <div className="card_inner_admin">
               <p className="text-primary-p">Total Active Users</p>
               <span className="font-bold text-title">

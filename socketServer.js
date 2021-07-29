@@ -2,7 +2,7 @@ let users = []
 let admins = [];
 
 const EditData = (data, id, call) => {
-    const newData = data.map(item => 
+    const newData = data.map(item =>
         item.id === id ? {...item, call} : item
     )
     return newData;
@@ -10,30 +10,23 @@ const EditData = (data, id, call) => {
 
 const SocketServer = (socket) => {
     // Connect - Disconnect
-    socket.on('joinUser', user => {
-        users.push({id: user._id, socketId: socket.id, followers: user.followers})
-    })
+    socket.on("joinUser", (id) => {
+        users.push({ id, socketId: socket.id });
+    });
 
-    socket.on("joinAdmin", (user) => {
-        admins.push({ id: user._id, socketId: socket.id });
-        const admin = admins.find((admin) => admin.id === user);
+    socket.on("joinAdmin", (id) => {
+        admins.push({ id, socketId: socket.id });
+        const admin = admins.find((admin) => admin.id === id);
         let totalActiveUsers = users.length;
 
         socket.to(`${admin.socketId}`).emit("activeUsers", totalActiveUsers);
     });
 
-    socket.on('disconnect', () => {
+    socket.on("disconnect", () => {
         const data = users.find(user => user.socketId === socket.id)
         if(data){
-            const clients = users.filter(user => 
-                data.followers.find(item => item._id === user.id)
-            )
 
-            if(clients.length > 0){
-                clients.forEach(client => {
-                    socket.to(`${client.socketId}`).emit('CheckUserOffline', data.id)
-                })
-            }
+
 
             if(data.call){
                 const callUser = users.find(user => user.id === data.call)
@@ -44,9 +37,10 @@ const SocketServer = (socket) => {
             }
         }
 
-        users = users.filter(user => user.socketId !== socket.id)
+        users = users.filter((user) => user.socketId !== socket.id);
         admins = admins.filter((user) => user.socketId !== socket.id);
-    })
+    });
+
 
 
     // Likes
@@ -139,12 +133,12 @@ const SocketServer = (socket) => {
 
     // Check User Online / Offline
     socket.on('checkUserOnline', data => {
-        const following = users.filter(user => 
+        const following = users.filter(user =>
             data.following.find(item => item._id === user.id)
         )
         socket.emit('checkUserOnlineToMe', following)
 
-        const clients = users.filter(user => 
+        const clients = users.filter(user =>
             data.followers.find(item => item._id === user.id)
         )
 
@@ -153,14 +147,14 @@ const SocketServer = (socket) => {
                 socket.to(`${client.socketId}`).emit('checkUserOnlineToClient', data._id)
             })
         }
-        
+
     })
 
 
     // Call User
     socket.on('callUser', data => {
         users = EditData(users, data.sender, data.recipient)
-        
+
         const client = users.find(user => user.id === data.recipient)
 
         if(client){

@@ -48,33 +48,33 @@ const authCtrl = {
         }
     },
 
-    // changePassword: async (req, res) => {
-    //     try {
-    //         const {oldPassword, newPassword} = req.body;
-    //
-    //         const user = await Users.findOne({ _id: req.user._id });
-    //
-    //         const isMatch = await bcrypt.compare(oldPassword, user.password);
-    //         if (!isMatch) {
-    //             return res.status(400).json({ msg: "Your password is wrong." });
-    //         }
-    //
-    //         if (newPassword.length < 6) {
-    //             return res
-    //                 .status(400)
-    //                 .json({ msg: "Password must be at least 6 characters long." });
-    //         }
-    //
-    //         const newPasswordHash = await bcrypt.hash(newPassword, 12);
-    //
-    //         await Users.findOneAndUpdate({_id: req.user._id}, {password: newPasswordHash });
-    //
-    //         res.json({msg: "Password updated successfully."})
-    //
-    //     } catch (err) {
-    //         return res.status(500).json({ msg: err.message });
-    //     }
-    // },
+    changePassword: async (req, res) => {
+        try {
+            const {oldPassword, newPassword} = req.body;
+
+            const user = await Users.findOne({ _id: req.user._id });
+
+            const isMatch = await bcrypt.compare(oldPassword, user.password);
+            if (!isMatch) {
+                return res.status(400).json({ msg: "Your password is wrong." });
+            }
+
+            if (newPassword.length < 6) {
+                return res
+                    .status(400)
+                    .json({ msg: "Password must be at least 6 characters long." });
+            }
+
+            const newPasswordHash = await bcrypt.hash(newPassword, 12);
+
+            await Users.findOneAndUpdate({_id: req.user._id}, {password: newPasswordHash });
+
+            res.json({msg: "Password updated successfully."})
+
+        } catch (err) {
+            return res.status(500).json({ msg: err.message });
+        }
+    },
 
     registerAdmin: async (req, res) => {
         try {
@@ -197,12 +197,13 @@ const authCtrl = {
 
     logout: async (req, res) => {
         try {
-            res.clearCookie('refreshtoken', {path: '/api/refresh_token'})
-            return res.json({msg: "Logged out!"})
+            res.clearCookie("refreshtoken", { path: "/api/refresh_token" });
+            return res.json({ msg: "Logged out Successfully." });
         } catch (err) {
-            return res.status(500).json({msg: err.message})
+            return res.status(500).json({ msg: err.message });
         }
     },
+
     generateAccessToken: async (req, res) => {
         try {
             const rf_token = req.cookies.refreshtoken
@@ -223,7 +224,7 @@ const authCtrl = {
                     user
                 })
             })
-            
+
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

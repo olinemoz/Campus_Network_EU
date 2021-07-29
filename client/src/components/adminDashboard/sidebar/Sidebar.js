@@ -26,7 +26,7 @@ const Sidebar = () => {
           <div className="sidebar__img">
             <h1>Campus Connect</h1>
           </div>
-          <i className="fa fa-times" id="sidebarIcon" aria-hidden="true"></i>
+          <i className="fa fa-times" id="sidebarIcon" aria-hidden="true"/>
         </div>
 
         <div className="sidebar__menu">
@@ -34,7 +34,7 @@ const Sidebar = () => {
             className={`sidebar__link ${adminMenu === 1 && "active_menu_link"}`}
             onClick={() => setAdminMenu(1)}
           >
-            <i className="fa fa-th"></i>
+            <i className="fa fa-th"/>
             <a href="#">Dashboard</a>
           </div>
           <h2>ADMIN CONTROL</h2>
@@ -42,34 +42,27 @@ const Sidebar = () => {
             className={`sidebar__link ${adminMenu === 2 && "active_menu_link"}`}
             onClick={() => setAdminMenu(2)}
           >
-            <i className="fa fa-lock" aria-hidden="true"></i>
+            <i className="fa fa-lock" aria-hidden="true"/>
             <a href="#">Admin Management</a>
           </div>
           <div
             className={`sidebar__link ${adminMenu === 3 && "active_menu_link"}`}
             onClick={() => setAdminMenu(3)}
           >
-            <i className="fa fa-ban"></i>
+            <i className="fa fa-ban"/>
             <a href="#">Spams Management</a>
           </div>
           <div
             className={`sidebar__link ${adminMenu === 4 && "active_menu_link"}`}
             onClick={() => setAdminMenu(4)}
           >
-            <i className="fa fa-wrench"></i>
+            <i className="fa fa-wrench"/>
             <a href="#">Users Management</a>
           </div>
-          <div className="sidebar__link">
-            <i className="fa fa-archive"></i>
-            <a href="#">xyz</a>
-          </div>
-          <div className="sidebar__link">
-            <i className="fa fa-handshake-o"></i>
-            <a href="#">xyz</a>
-          </div>
+
 
           <div className="sidebar__logout">
-            <i className="fa fa-power-off"></i>
+            <i className="fa fa-power-off"/>
             <Link to="/" onClick={() => dispatch(logout())}>
               Log out
             </Link>

@@ -5,10 +5,12 @@ import FollowBtn from '../FollowBtn'
 import Followers from './Followers'
 import Following from './Following'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
+import ChangePassword from "./ChangePassword";
 
 const Info = ({id, auth, profile, dispatch}) => {
     const [userData, setUserData] = useState([])
     const [onEdit, setOnEdit] = useState(false)
+    const [changePassword, setChangePassword] = useState(false);
 
     const [showFollowers, setShowFollowers] = useState(false)
     const [showFollowing, setShowFollowing] = useState(false)
@@ -76,6 +78,7 @@ const Info = ({id, auth, profile, dispatch}) => {
                         {
                             onEdit && <EditProfile setOnEdit={setOnEdit} />
                         }
+                        {changePassword && <ChangePassword setChangePassword={setChangePassword} />}
 
                         {
                             showFollowers &&
