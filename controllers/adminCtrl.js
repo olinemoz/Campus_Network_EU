@@ -50,7 +50,7 @@ const adminCtrl = {
     try {
       const posts = await Posts.find();
 
-      const reportedPosts = await posts.filter(post => post.reports.length>2);
+      const reportedPosts = await posts.filter(post => post.reports.length>0);
       const total_spam_posts = reportedPosts.length;
       res.json({ total_spam_posts });
     } catch (err) {
@@ -63,7 +63,7 @@ const adminCtrl = {
       const posts = await Posts.find()
           .select("user createdAt reports content")
           .populate({ path: "user", select: "username avatar email" });
-      const spamPosts = posts.filter((post) => post.reports.length > 1);
+      const spamPosts = posts.filter((post) => post.reports.length > 0);
 
       res.json({ spamPosts });
     } catch (err) {
