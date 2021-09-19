@@ -6,7 +6,7 @@ import { createNotify, removeNotify } from '../actions/notifyAction'
 
 export const createComment = ({post, newComment, auth, socket}) => async (dispatch) => {
     const newPost = {...post, comments: [...post.comments, newComment]}
-    
+
     dispatch({ type: POST_TYPES.UPDATE_POST, payload: newPost })
 
     try {
@@ -26,12 +26,12 @@ export const createComment = ({post, newComment, auth, socket}) => async (dispat
             text: newComment.reply ? 'mentioned you in a comment.' : 'has commented on your post.',
             recipients: newComment.reply ? [newComment.tag._id] : [post.user._id],
             url: `/post/${post._id}`,
-            content: post.content, 
+            content: post.content,
             image: post.images[0].url
         }
 
         dispatch(createNotify({msg, auth, socket}))
-        
+
     } catch (err) {
         dispatch({ type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg} })
     }

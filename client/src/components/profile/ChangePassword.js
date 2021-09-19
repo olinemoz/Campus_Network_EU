@@ -31,10 +31,10 @@ const ChangePassword = ({ setChangePassword }) => {
 
 
           <div className="form_group">
-            <label htmlFor="oldPassword">old password</label>
+            <label htmlFor="oldPassword">Old password</label>
 
             <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="oldPassword"
                 name="oldPassword"
@@ -45,10 +45,10 @@ const ChangePassword = ({ setChangePassword }) => {
 
 
           <div className="form_group">
-            <label htmlFor="newPassword">new password</label>
+            <label htmlFor="newPassword">New password</label>
 
             <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="newPassword"
                 name="newPassword"
@@ -59,10 +59,10 @@ const ChangePassword = ({ setChangePassword }) => {
 
 
           <div className="form_group">
-            <label htmlFor="cnfNewPassword">confirm new password</label>
+            <label htmlFor="cnfNewPassword">Confirm new password</label>
 
             <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="cnfNewPassword"
                 name="cnfNewPassword"
@@ -73,7 +73,7 @@ const ChangePassword = ({ setChangePassword }) => {
 
 
           <button className="btn btn-info w-100" type="submit">
-            update
+            Update
           </button>
         </form>
       </div>
