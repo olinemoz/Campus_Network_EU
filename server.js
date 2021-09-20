@@ -39,7 +39,7 @@ app.use('/api', require('./routes/adminRouter'));
 app.use('/api', require('./routes/notifyRouter'))
 app.use('/api', require('./routes/messageRouter'))
 
-
+//Database Integration
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI, {
     useCreateIndex: true,
@@ -51,6 +51,7 @@ mongoose.connect(URI, {
     console.log('Database Connected!!')
 })
 
+//Production Build
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
     app.get('*', (req, res) => {
