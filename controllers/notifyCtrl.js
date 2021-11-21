@@ -44,7 +44,6 @@ const notifyCtrl = {
             const notifies = await Notifies.findOneAndUpdate({_id: req.params.id}, {
                 isRead: true
             })
-
             return res.json({notifies})
         } catch (err) {
             return res.status(500).json({msg: err.message})
