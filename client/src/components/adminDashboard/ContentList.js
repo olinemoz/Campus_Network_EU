@@ -24,7 +24,7 @@ const ContentList = ({content}) => {
 
               <div className="d-flex">
                 <Avatar size="big-avatar" src={post.user.avatar} />
-                <div className="d-flex flex-column ms-3">
+                <div className="d-flex flex-column ml-3">
                   <span className="spam_username">{post.user.username}</span>
                   <span className="spam_email">{post.user.email}</span>
                 </div>

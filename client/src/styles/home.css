@@ -1,4 +1,9 @@
 /* --------- Status ---------- */
+.card{
+    border: none !important;
+    padding: 25px !important;
+}
+
 .status{
     background: white;
     box-shadow: 0 0 5px #ddd;

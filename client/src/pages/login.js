@@ -41,8 +41,14 @@ const Login = () => {
 
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" name="email"
-                    aria-describedby="emailHelp" onChange={handleChangeInput} value={email} />
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        name="email"
+                        aria-describedby="emailHelp"
+                        onChange={handleChangeInput} value={email}
+                    />
                     
                     <small id="emailHelp" className="form-text text-muted">
                         We'll never share your email with anyone else.
@@ -54,9 +60,14 @@ const Login = () => {
 
                     <div className="pass">
                         
-                        <input type={ typePass ? "text" : "password" } 
-                        className="form-control" id="exampleInputPassword1"
-                        onChange={handleChangeInput} value={password} name="password" />
+                        <input
+                            type={ typePass ? "text" : "password" }
+                            className="form-control"
+                            id="exampleInputPassword1"
+                            onChange={handleChangeInput}
+                            value={password}
+                            name="password"
+                        />
 
                         <small onClick={() => setTypePass(!typePass)}>
                             {typePass ? 'Hide' : 'Show'}

@@ -41,12 +41,12 @@ const CardHeader = ({post}) => {
                             <Avatar src={post && post.user ? post.user.avatar : ''} size="big-avatar"/>
 
                             <div className="card_name">
-                                <h6 className="m-0">
-                                    <Link to={`/profile/${post.user._id}`} className="text-dark">
+                                <h6 className="ml-3">
+                                    <Link to={`/profile/${post.user._id}`} className="text-dark text-decoration-none">
                                         {post.user.username}
                                     </Link>
                                 </h6>
-                                <small className="text-muted">
+                                <small className="text-muted ml-3">
                                     {moment(post.createdAt).fromNow()}
                                 </small>
                             </div>
@@ -76,8 +76,8 @@ const CardHeader = ({post}) => {
                         <span className="material-icons">content_copy</span> Copy Link
                     </div>
                     <div className="dropdown-item" onClick={handleReportPost}>
-                        <span className="material-icons text-yellow">report_problem</span>
-                        Report this post
+                        <span className="material-icons text-yellow border-0">report_problem</span>
+                        Report Post
                     </div>
                 </div>
             </div>

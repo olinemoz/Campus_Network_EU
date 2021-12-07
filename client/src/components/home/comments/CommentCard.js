@@ -73,9 +73,9 @@ const CommentCard = ({children, comment, post, commentId}) => {
 
     return (
         <div className="comment_card mt-2" style={styleCard}>
-            <Link to={`/profile/${comment.user._id}`} className="d-flex text-dark">
+            <Link to={`/profile/${comment.user._id}`} className="d-flex text-dark  text-decoration-none">
                 <Avatar src={comment.user.avatar} size="small-avatar" />
-                <h6 className="mx-1">{comment.user.username}</h6>
+                <h6 className="mx-1 ">{comment.user.username}</h6>
             </Link>
 
             <div className="comment_content">
@@ -92,7 +92,7 @@ const CommentCard = ({children, comment, post, commentId}) => {
                         : <div>
                             {
                                 comment.tag && comment.tag._id !== comment.user._id &&
-                                <Link to={`/profile/${comment.tag._id}`} className="mr-1">
+                                <Link to={`/profile/${comment.tag._id}`} className="px-2 text-decoration-none">
                                     @{comment.tag.username}
                                 </Link>
                             }

@@ -33,9 +33,9 @@ const InputComment = ({children, post, onReply, setOnReply}) => {
     }
 
     return (
-        <form className="card-footer comment_input" onSubmit={handleSubmit} >
+        <form className="card-footer comment_input border-0" onSubmit={handleSubmit} >
             {children}
-            <input type="text" placeholder="Add your comments..."
+            <input type="text" placeholder="Comment here"
             value={content} onChange={e => setContent(e.target.value)}
             style={{
                 filter: theme ? 'invert(1)' : 'invert(0)',

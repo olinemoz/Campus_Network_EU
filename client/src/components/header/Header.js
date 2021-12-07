@@ -6,14 +6,14 @@ import Search from './Search'
 const Header = () => {
 
     return (
-        <div className="header bg-light">
+        <div className="header bg-light border-0">
             <nav className="navbar navbar-expand-lg navbar-light 
             bg-light justify-content-between align-middle">
 
                 <Link to="/" className="logo">
-                    <h1 className="navbar-brand text-uppercase p-0 m-0"
+                    <h1 className="navbar-brand text-capitalize p-0 m-0"
                     onClick={() => window.scrollTo({top: 0})}>
-                        Social Network
+                        Campus Network
                     </h1>
                 </Link>
 
