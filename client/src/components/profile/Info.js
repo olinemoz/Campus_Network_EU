@@ -32,7 +32,7 @@ const Info = ({id, auth, profile, dispatch}) => {
             dispatch({ type: GLOBALTYPES.MODAL, payload: false})
         }
     },[showFollowers, showFollowing, onEdit, dispatch])
-    
+
 
     return (
         <div className="info">
@@ -44,24 +44,25 @@ const Info = ({id, auth, profile, dispatch}) => {
                         <div className="info_content">
                             <div className="info_content_title">
                                 <h2>{user.username}</h2>
+                            </div>
+                            <div>
                                 {
                                     user._id === auth.user._id
-                                    ?  <button className="btn btn-outline-info"
-                                    onClick={() => setOnEdit(true)}>
-                                        Edit Profile
-                                    </button>
-                                    
-                                    : <FollowBtn user={user} />
+                                        ?  <button className="btn btn-outline-success"
+                                                   onClick={() => setOnEdit(true)}>
+                                            Edit Profile
+                                        </button>
+
+                                        : <FollowBtn user={user} />
                                 }
                                 {user._id === auth.user._id ? (
                                     <button
-                                        className="btn btn-outline-info"
+                                        className="btn btn-outline-primary mx-2"
                                         onClick={() => setChangePassword(true)}
                                     >
                                         Change password
                                     </button>
                                 ) : null}
-                                
                             </div>
 
                             <div className="follow_btn">
@@ -89,16 +90,16 @@ const Info = ({id, auth, profile, dispatch}) => {
 
                         {
                             showFollowers &&
-                            <Followers 
-                            users={user.followers} 
-                            setShowFollowers={setShowFollowers} 
+                            <Followers
+                            users={user.followers}
+                            setShowFollowers={setShowFollowers}
                             />
                         }
                         {
                             showFollowing &&
-                            <Following 
-                            users={user.following} 
-                            setShowFollowing={setShowFollowing} 
+                            <Following
+                            users={user.following}
+                            setShowFollowing={setShowFollowing}
                             />
                         }
                     </div>
