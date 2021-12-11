@@ -1,10 +1,11 @@
 require('dotenv').config()
 const express = require('express')
+const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const SocketServer = require('./socketServer')
-const { ExpressPeerServer } = require('peer')
+const {ExpressPeerServer} = require('peer')
 const path = require('path')
 const corsOptions = {
     Credential: 'true',
@@ -13,7 +14,7 @@ const corsOptions = {
 
 const app = express()
 app.use(express.json())
-app.options("*" , cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(cors(corsOptions))
 app.use(cookieParser())
 
@@ -27,7 +28,7 @@ io.on('connection', socket => {
 })
 
 // Create peer server
-ExpressPeerServer(http, { path: '/' })
+ExpressPeerServer(http, {path: '/'})
 
 
 // Routes
@@ -47,12 +48,35 @@ mongoose.connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, err => {
-    if(err) throw err;
+    if (err) throw err;
     console.log('Database Connected!!')
 })
 
+const client = new MongoClient(URI);
 
-if(process.env.NODE_ENV === 'production'){
+async function run() {
+    try {
+        await client.connect();
+        const database = client.db("Campus_Network");
+        const usersCollection = database.collection("users");
+
+        app.get('/users', async (req, res) => {
+            const cursor = usersCollection.find({});
+            const users = await cursor.toArray();
+            console.log("Users: ", users)
+            res.json(users);
+        });
+
+
+    } finally {
+        // await client.close();
+    }
+}
+
+run().catch(console.dir);
+
+
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
