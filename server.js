@@ -3,6 +3,7 @@ const express = require('express')
 const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose')
 const cors = require('cors')
+const ObjectId = require('mongodb').ObjectId
 const cookieParser = require('cookie-parser')
 const SocketServer = require('./socketServer')
 const {ExpressPeerServer} = require('peer')
@@ -66,7 +67,12 @@ async function run() {
             console.log("Users: ", users)
             res.json(users);
         });
-
+        app.delete('/users/:deleteUser', async (req, res) => {
+            const deleteUser = req.params.deleteUser
+            const query = {_id: ObjectId(deleteUser)}
+            const result = await usersCollection.deleteOne(query);
+            res.json(result)
+        })
 
     } finally {
         // await client.close();
