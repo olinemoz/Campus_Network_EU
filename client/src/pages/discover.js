@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getDiscoverPosts, DISCOVER_TYPES } from '../redux/actions/discoverAction'
-import LoadIcon from '../images/loading.gif'
 import PostThumb from '../components/PostThumb'
 import LoadMoreBtn from '../components/LoadMoreBtn'
 import { getDataAPI} from '../utils/fetchData'
+import {Spinner} from "react-bootstrap";
 
 const Discover = () => {
     const { auth, discover } = useSelector(state => state)
@@ -29,12 +29,14 @@ const Discover = () => {
         <div>
             {
                 discover.loading 
-                ? <img src={LoadIcon} alt="loading" className="d-block mx-auto my-4" />
+                ? <Spinner animation="border" variant="primary" className="d-block mx-auto"
+                           style={{height: "40px", width: "40px"}}/>
                 : <PostThumb posts={discover.posts} result={discover.result} />
             }
 
             {
-                load && <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
+                load && <Spinner animation="border" variant="primary" className="d-block mx-auto"
+                                 style={{height: "40px", width: "40px"}}/>
             }
 
             {

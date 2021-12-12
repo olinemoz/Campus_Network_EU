@@ -23,7 +23,7 @@
     opacity: 1;
 }
 .header .menu .material-icons{
-    font-size: 30px;
+    font-size: 25px;
 }
 .header .menu .dropdown-menu{
     position: absolute;
@@ -95,3 +95,8 @@
     transform: translateY(-50%);
 }
 
+@media only screen and (max-width: 767px) {
+    .header .navbar {
+        padding-bottom: 35px;
+    }
+}

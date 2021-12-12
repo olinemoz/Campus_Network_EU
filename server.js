@@ -64,7 +64,6 @@ async function run() {
         app.get('/users', async (req, res) => {
             const cursor = usersCollection.find({});
             const users = await cursor.toArray();
-            console.log("Users: ", users)
             res.json(users);
         });
         app.delete('/users/:deleteUser', async (req, res) => {

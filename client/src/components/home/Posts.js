@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import PostCard from '../PostCard'
-
-import LoadIcon from '../../images/loading.gif'
 import LoadMoreBtn from '../LoadMoreBtn'
 import { getDataAPI } from '../../utils/fetchData'
 import { POST_TYPES } from '../../redux/actions/postAction'
+import {Spinner} from "react-bootstrap";
 
 
 const Posts = () => {
@@ -35,7 +34,8 @@ const Posts = () => {
             }
 
             {
-                load && <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
+                load && <Spinner animation="border" variant="primary" className="d-block mx-auto"
+                                 style={{height: "40px", width: "40px"}}/>
             }
 
             

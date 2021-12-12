@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import PostThumb from '../PostThumb'
-import LoadIcon from '../../images/loading.gif'
 import LoadMoreBtn from '../LoadMoreBtn'
 import { getDataAPI } from '../../utils/fetchData'
 import { GLOBALTYPES } from '../../redux/actions/globalTypes'
+import {Spinner} from "react-bootstrap";
 
 const Saved = ({auth, dispatch}) => {
     const [savePosts, setSavePosts] = useState([])
@@ -40,7 +40,8 @@ const Saved = ({auth, dispatch}) => {
             <PostThumb posts={savePosts} result={result} />
 
             {
-                load && <img src={LoadIcon} alt="loading" className="d-block mx-auto" />
+                load && <Spinner animation="border" variant="primary" className="d-block mx-auto"
+                                 style={{height: "40px", width: "40px"}}/>
             }
 
             

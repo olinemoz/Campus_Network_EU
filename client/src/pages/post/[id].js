@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPost } from '../../redux/actions/postAction'
-import LoadIcon from '../../images/loading.gif'
 import PostCard from '../../components/PostCard'
+import {Spinner} from "react-bootstrap";
 
 
 const Post = () => {
@@ -26,7 +26,8 @@ const Post = () => {
         <div className="posts">
             {
                 post.length === 0 &&
-                <img src={LoadIcon} alt="loading" className="d-block mx-auto my-4" />
+                <Spinner animation="border" variant="primary" className="d-block mx-auto"
+                         style={{height: "40px", width: "40px"}}/>
             }
 
             {

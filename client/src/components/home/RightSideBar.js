@@ -1,10 +1,9 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-
 import UserCard from '../UserCard'
 import FollowBtn from '../FollowBtn'
-import LoadIcon from '../../images/loading.gif'
 import {getSuggestions} from '../../redux/actions/suggestionsAction'
+import {Spinner} from "react-bootstrap";
 
 const RightSideBar = () => {
     const {auth, suggestions} = useSelector(state => state)
@@ -25,7 +24,8 @@ const RightSideBar = () => {
 
             {
                 suggestions.loading
-                    ? <img src={LoadIcon} alt="loading" className="d-block mx-auto my-4"/>
+                    ? <Spinner animation="border" variant="primary" className="d-block mx-auto"
+                               style={{height: "40px", width: "40px"}}/>
                     : <div className="suggestions">
                         {
                             suggestions.users.map(user => (
