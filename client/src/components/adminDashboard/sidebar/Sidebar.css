@@ -1,5 +1,5 @@
 #sidebar {
-  background: #020509;
+  background: darkblue;
   grid-area: sidebar;
   overflow-y: auto;
   padding: 20px;
@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #f3f4f6;
+  color: white;
   margin-bottom: 30px;
   /* color: #E85B6B; */
 }

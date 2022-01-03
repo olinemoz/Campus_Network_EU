@@ -9,7 +9,7 @@ import {imageShow, videoShow} from '../../utils/mediaShow'
 import {imageUpload} from '../../utils/imageUpload'
 import {addMessage, getMessages, loadMoreMessages, deleteConversation} from '../../redux/actions/messageAction'
 import {Spinner} from "react-bootstrap";
-import {BsCameraVideo, FiTrash, IoCallOutline, IoEnterOutline, RiGalleryLine, RiSendPlane2Line} from "react-icons/all";
+import {BsCameraVideo, FiTrash, IoCallOutline, IoEnterOutline, RiGalleryLine} from "react-icons/all";
 
 const RightSide = () => {
     const {auth, message, theme, socket, peer} = useSelector(state => state)
