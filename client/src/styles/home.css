@@ -62,19 +62,19 @@
 }
 
 /* ---------- Post Card Footer ---------- */
-.posts .card_icon_menu{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 15px;
-    cursor: pointer;
-}
-.posts .card_icon_menu i{
-    font-size: 28px;
-    margin: 10px;
-}
-.posts .card_icon_menu img{
-    width: 28px;
-    height: 28px;
-    transform: translate(5px, -5px);
-    opacity: 0.9;
-}
+/*.posts .card_icon_menu{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    padding: 0 15px;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.posts .card_icon_menu .post_icon{*/
+/*    font-size: 28px;*/
+/*    margin: 10px;*/
+/*}*/
+/*.posts .card_icon_menu img{*/
+/*    width: 28px;*/
+/*    height: 28px;*/
+/*    transform: translate(5px, -5px);*/
+/*    opacity: 0.9;*/
+/*}*/

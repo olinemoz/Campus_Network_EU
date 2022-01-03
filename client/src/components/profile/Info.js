@@ -41,7 +41,7 @@ const Info = ({id, auth, profile, dispatch}) => {
                     <div className="info_container" key={user._id}>
                         <Avatar src={user.avatar} size="supper-avatar" />
 
-                        <div className="info_content">
+                        <div className="info_content shadow-lg pl-4 rounded">
                             <div className="info_content_title">
                                 <h2>{user.username}</h2>
                             </div>

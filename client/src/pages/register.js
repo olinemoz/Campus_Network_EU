@@ -20,6 +20,7 @@ const Register = () => {
     const [key, setKey] = useState('name');
 
 
+
     useEffect(() => {
         if (auth.token) history.push("/")
     }, [auth.token, history])
@@ -48,7 +49,7 @@ const Register = () => {
                             onSelect={(k) => setKey(k)}
                             className="mb-3"
                         >
-                            <Tab eventKey="name" title="name">
+                            <Tab eventKey="name" title="Step 1" id="1">
                                 <div>
                                     <label
                                         htmlFor="fullname"
@@ -94,7 +95,7 @@ const Register = () => {
                                 </div>
                             </Tab>
 
-                            <Tab eventKey="email" title="email">
+                            <Tab eventKey="email" title="Step 2" id="2">
                                 <div>
                                     <label
                                         htmlFor="email"
@@ -113,9 +114,6 @@ const Register = () => {
                                         style={{background: `${alert.email ? '#fd2d6a14' : ''}`}}
                                     />
                                 </div>
-                            </Tab>
-
-                            <Tab eventKey="password" title="password">
                                 <div>
                                     <label
                                         htmlFor="password"
@@ -141,6 +139,9 @@ const Register = () => {
                                     </small>
                                 </div>
 
+                            </Tab>
+
+                            <Tab eventKey="password" title="Step 3" id="3">
                                 <div>
                                     <label
                                         htmlFor="cf_password"
@@ -192,7 +193,6 @@ const Register = () => {
                                 </div>
                             </Tab>
                         </Tabs>
-
                         <button
                             type="submit"
                             className="w-full mt-2 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans"

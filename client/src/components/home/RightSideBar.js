@@ -10,14 +10,14 @@ const RightSideBar = () => {
     const dispatch = useDispatch()
 
     return (
-        <div className="mt-3 shadow-lg p-3 rounded">
+        <div className="mt-3 shadow-lg py-3 px-1 rounded">
             <UserCard user={auth.user}/>
 
             <div className="d-flex justify-content-between align-items-center my-2">
-                <h5 className="text-success">People You May Know</h5>
+                <h5 className="text-success ml-4">People You May Know</h5>
                 {
                     !suggestions.loading &&
-                    <i className="fas fa-redo" style={{cursor: 'pointer'}}
+                    <i className="fas fa-redo mr-3" style={{cursor: 'pointer'}}
                        onClick={() => dispatch(getSuggestions(auth.token))}/>
                 }
             </div>

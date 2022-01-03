@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import Send from '../../../images/send.svg'
+import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import LikeButton from '../../LikeButton'
-import { useSelector, useDispatch } from 'react-redux'
-import { likePost, unLikePost, savePost, unSavePost } from '../../../redux/actions/postAction'
+import {useSelector, useDispatch} from 'react-redux'
+import {likePost, unLikePost, savePost, unSavePost} from '../../../redux/actions/postAction'
 import ShareModal from '../../ShareModal'
-import { BASE_URL } from '../../../utils/config'
+import {BASE_URL} from '../../../utils/config'
+import {MdOutlineModeComment, RiShareCircleFill} from "react-icons/all";
 
 
 const CardFooter = ({post}) => {
@@ -14,7 +14,7 @@ const CardFooter = ({post}) => {
 
     const [isShare, setIsShare] = useState(false)
 
-    const { auth, theme, socket } = useSelector(state => state)
+    const {auth, theme, socket} = useSelector(state => state)
     const dispatch = useDispatch()
 
     const [saved, setSaved] = useState(false)
@@ -22,23 +22,23 @@ const CardFooter = ({post}) => {
 
     // Likes
     useEffect(() => {
-        if(post.likes.find(like => like._id === auth.user._id)){
+        if (post.likes.find(like => like._id === auth.user._id)) {
             setIsLike(true)
-        }else{
+        } else {
             setIsLike(false)
         }
     }, [post.likes, auth.user._id])
 
     const handleLike = async () => {
-        if(loadLike) return;
-        
+        if (loadLike) return;
+
         setLoadLike(true)
         await dispatch(likePost({post, auth, socket}))
         setLoadLike(false)
     }
 
     const handleUnLike = async () => {
-        if(loadLike) return;
+        if (loadLike) return;
 
         setLoadLike(true)
         await dispatch(unLikePost({post, auth, socket}))
@@ -48,23 +48,23 @@ const CardFooter = ({post}) => {
 
     // Saved
     useEffect(() => {
-        if(auth.user.saved.find(id => id === post._id)){
+        if (auth.user.saved.find(id => id === post._id)) {
             setSaved(true)
-        }else{
+        } else {
             setSaved(false)
         }
-    },[auth.user.saved, post._id])
+    }, [auth.user.saved, post._id])
 
     const handleSavePost = async () => {
-        if(saveLoad) return;
-        
+        if (saveLoad) return;
+
         setSaveLoad(true)
         await dispatch(savePost({post, auth}))
         setSaveLoad(false)
     }
 
     const handleUnSavePost = async () => {
-        if(saveLoad) return;
+        if (saveLoad) return;
 
         setSaveLoad(true)
         await dispatch(unSavePost({post, auth}))
@@ -73,44 +73,51 @@ const CardFooter = ({post}) => {
 
     return (
         <div className="card_footer">
-            <div className="card_icon_menu">
-                <div>
-                    <LikeButton 
-                    isLike={isLike}
-                    handleLike={handleLike}
-                    handleUnLike={handleUnLike}
-                    />
+            <div className="">
+                <div className="d-flex ml-3">
+                    <div>
+                        <LikeButton
+                            isLike={isLike}
+                            handleLike={handleLike}
+                            handleUnLike={handleUnLike}
+                        />
+                    </div>
 
-                    <Link to={`/post/${post._id}`} className="text-dark">
-                        <i className="far fa-comment" />
-                    </Link>
+                    <div>
+                        <Link to={`/post/${post._id}`} className="text-dark">
+                            <MdOutlineModeComment className="ml-3 mt-2" style={{fontSize: "28px"}}/>
+                        </Link>
+                    </div>
+                    <div>
+                        <RiShareCircleFill onClick={() => setIsShare(!isShare)} className="ml-3 mt-2"
+                                           style={{fontSize: "28px", cursor: 'pointer'}}/>
+                    </div>
 
-                    <img src={Send} alt="Send" onClick={() => setIsShare(!isShare)} />
+                    <div>
+                        {
+                            saved
+                                ? <i className="fas fa-bookmark text-info ml-3 mt-2"
+                                     onClick={handleUnSavePost} style={{fontSize: "28px"}}/>
+
+                                : <i className="far fa-bookmark ml-3 mt-2"
+                                     onClick={handleSavePost} style={{fontSize: "28px"}}/>
+                        }
+                    </div>
                 </div>
-
-                {
-                    saved 
-                    ?  <i className="fas fa-bookmark text-info"
-                    onClick={handleUnSavePost} />
-
-                    :  <i className="far fa-bookmark"
-                    onClick={handleSavePost} />
-                }
-               
             </div>
 
             <div className="d-flex justify-content-between">
                 <h6 style={{padding: '0 25px', cursor: 'pointer'}}>
                     {post.likes.length} likes
                 </h6>
-                
+
                 <h6 style={{padding: '0 25px', cursor: 'pointer'}}>
                     {post.comments.length} comments
                 </h6>
             </div>
 
             {
-                isShare && <ShareModal url={`${BASE_URL}/post/${post._id}`} theme={theme} />
+                isShare && <ShareModal url={`${BASE_URL}/post/${post._id}`} theme={theme}/>
             }
         </div>
     )

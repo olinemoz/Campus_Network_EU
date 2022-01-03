@@ -4,6 +4,7 @@ import {GLOBALTYPES} from '../redux/actions/globalTypes'
 import {createPost, updatePost} from '../redux/actions/postAction'
 import Icons from './Icons'
 import {imageShow, videoShow} from '../utils/mediaShow'
+import {GrGallery, RiCamera2Line} from "react-icons/all";
 
 const StatusModal = () => {
     const {auth, theme, status, socket} = useSelector(state => state)
@@ -171,12 +172,12 @@ const StatusModal = () => {
                     <div className="input_images">
                         {
                             stream
-                                ? <i className="fas fa-camera" onClick={handleCapture}/>
+                                ? <RiCamera2Line onClick={handleCapture} style={{fontSize: "26px"}}/>
                                 : <>
-                                    <i className="fas fa-camera" onClick={handleStream}/>
+                                    <RiCamera2Line onClick={handleStream} style={{fontSize: "26px"}}/>
 
                                     <div className="file_upload">
-                                        <i className="fas fa-image"/>
+                                        <GrGallery style={{fontSize: "24px"}}/>
                                         <input type="file" name="file" id="file"
                                                multiple accept="image/*,video/*" onChange={handleChangeImages}/>
                                     </div>

@@ -36,7 +36,7 @@ const Home = () => {
 
                         : (homePosts.result === 0 && homePosts.posts.length === 0)
                             ?
-                            <h2 className="text-danger" style={{position: 'absolute', top: "45%", left: "45%"}}>No Post</h2>
+                            ''
                             : <Posts/>
                 }
 

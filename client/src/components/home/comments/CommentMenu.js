@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteComment } from '../../../redux/actions/commentAction'
+import {AiOutlineDelete, AiTwotoneEdit} from "react-icons/all";
 
 const CommentMenu = ({post, comment, setOnEdit}) => {
 
@@ -17,10 +18,10 @@ const CommentMenu = ({post, comment, setOnEdit}) => {
         return(
             <>
                 <div className="dropdown-item" onClick={() => setOnEdit(true)}>
-                    <span className="material-icons">create</span> Edit
+                    <span className="material-icons"><AiTwotoneEdit className="mr-2"/></span> Edit
                 </div>
                 <div className="dropdown-item" onClick={handleRemove}>
-                    <span className="material-icons">delete_outline</span> Remove
+                    <span className="material-icons"><AiOutlineDelete className="mr-2"/></span> Remove
                 </div>
             </>
         )
@@ -32,7 +33,7 @@ const CommentMenu = ({post, comment, setOnEdit}) => {
             {
                 (post.user._id === auth.user._id || comment.user._id === auth.user._id) &&
                 <div className="nav-item dropdown">
-                    <span className="material-icons" id="moreLink" data-toggle="dropdown">
+                    <span className="material-icons mt-2" id="moreLink" data-toggle="dropdown">
                         more_vert
                     </span>
 
