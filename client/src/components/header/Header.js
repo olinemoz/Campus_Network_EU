@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Menu from './Menu'
 import Search from './Search'
+import logo from '../../images/logo.png'
 
 const Header = () => {
 
@@ -12,14 +13,14 @@ const Header = () => {
 
                 <Link to="/" className="logo">
                     <h1 className="navbar-brand text-capitalize p-0 m-0"
-                    onClick={() => window.scrollTo({top: 0})}>
-                        Campus Network
+                        onClick={() => window.scrollTo({top: 0})}>
+                        <img src={logo} alt="" style={{height: '80px', width: '250px'}}/>
                     </h1>
                 </Link>
 
-                <Search />
+                <Search/>
 
-                <Menu />
+                <Menu/>
             </nav>
         </div>
     )
